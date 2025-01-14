@@ -16,14 +16,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CreateUser {
 
+    private final UserRepository userRepository;
+    private final UserGroupRepository userGroupRepository;
+    private final WaitActiveUserRepository waitActiveUserRepository;
+    private final AccountActiveMailSender accountActiveMailSender;
+
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private UserGroupRepository userGroupRepository;
-    @Autowired
-    private WaitActiveUserRepository waitActiveUserRepository;
-    @Autowired
-    private AccountActiveMailSender accountActiveMailSender;
+    public CreateUser(UserRepository userRepository,
+                      UserGroupRepository userGroupRepository,
+                      WaitActiveUserRepository waitActiveUserRepository,
+                      AccountActiveMailSender accountActiveMailSender) {
+        this.userRepository = userRepository;
+        this.userGroupRepository = userGroupRepository;
+        this.waitActiveUserRepository = waitActiveUserRepository;
+        this.accountActiveMailSender = accountActiveMailSender;
+    }
 
     /**
      * 创建用户

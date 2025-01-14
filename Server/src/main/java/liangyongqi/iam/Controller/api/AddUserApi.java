@@ -17,7 +17,8 @@ import java.util.Map;
 public class AddUserApi {
     @Autowired
     private PermissionManager permissionManager;
-
+    @Autowired
+    private CreateUser createUser;
     /**
      * 添加用户
      * @param addUserRequest
@@ -36,7 +37,6 @@ public class AddUserApi {
                 return ResponseEntity.ok(responseMap);
             }
             // 核心操作
-            CreateUser createUser = new CreateUser();
             String key = createUser.createUser(addUserRequest.getId(), addUserRequest.getUsername(), addUserRequest.getEmail(), addUserRequest.getUsergroup());
             if (key == null){
                 responseMap.put("code", "failed");

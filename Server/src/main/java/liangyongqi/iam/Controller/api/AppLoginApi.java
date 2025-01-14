@@ -71,6 +71,9 @@ public class AppLoginApi {
             String key = loginRequest.getUserId() + userOptional.get().getRandomkey() + String.valueOf(System.currentTimeMillis() / 1000 / 60);
             String otpCurrent = otp.generateOtp(key);
             // 分别在控制台上打印输入的otp和正确的otp
+            System.out.println(key);
+            System.out.println("输入的otp：" + loginRequest.getOtp());
+            System.out.println("正确的otp：" + otpCurrent);
             // 如果输入的otp和正确的otp不相等，返回错误信息
             if (!loginRequest.getOtp().equals(otpCurrent)) {
                 responseMap.put("code", "failed");
@@ -79,7 +82,12 @@ public class AppLoginApi {
             }
 
             // 添加应用授权日志
-            addAppauthlog.addAppauthlog(loginRequest.getUserId(), loginRequest.getApplicationId());
+            String AddLogStatus = addAppauthlog.addAppauthlog(loginRequest.getUserId(), loginRequest.getApplicationId());
+            if (!AddLogStatus.equals("success")) {
+                responseMap.put("code", "failed");
+                responseMap.put("message", AddLogStatus);
+                return ResponseEntity.ok(responseMap);
+            }
             responseMap.put("code", "success");
             responseMap.put("URI", applicationOptional.get().getUri());
             // IAM系统验证成功后，生成一个随机的token，返回给用户，用户在访问应用时，携带token，应用系统验证token是否有效

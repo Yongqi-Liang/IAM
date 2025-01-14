@@ -6,7 +6,6 @@ public class AddUserRequest {
     private String username;
     private String email;
     private String usergroup;
-    private String code;
 
     public String getId() {
         return id;
@@ -46,13 +45,5 @@ public class AddUserRequest {
 
     public void setUsergroup(String usergroup) {
         this.usergroup = usergroup;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 }

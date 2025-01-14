@@ -1,9 +1,6 @@
 package liangyongqi.iam.Data.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
@@ -11,7 +8,7 @@ import java.sql.Timestamp;
 @Table(name = "appauthlog")
 public class Appauthlog {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "uid", nullable = false, length = 30)

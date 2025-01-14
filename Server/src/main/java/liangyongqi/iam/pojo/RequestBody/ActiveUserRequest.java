@@ -1,18 +1,8 @@
 package liangyongqi.iam.pojo.RequestBody;
 
 public class ActiveUserRequest {
-    private String token;
-
     private String id;
     private String code;
-
-    public String getAdminToken() {
-        return token;
-    }
-
-    public void setAdminToken(String adminToken) {
-        this.token = adminToken;
-    }
 
     public String getId() {
         return id;

@@ -2,6 +2,7 @@ package liangyongqi.iam.Ability;
 
 import liangyongqi.iam.Data.Entity.Appauthlog;
 import liangyongqi.iam.Data.Repository.AppauthlogRepository;
+import liangyongqi.iam.Util.LogTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class AddAppauthlog {
      * @return success or failed
      */
     public String addAppauthlog(String uid, String appid) {
+        LogTool.writelog("liangyongqi.iam.Ability.AddAppauthlog", "addAppauthlog", "写入登录日志");
         try {
             // 创建 Appauthlog 对象
             Appauthlog appauthlog = new Appauthlog();

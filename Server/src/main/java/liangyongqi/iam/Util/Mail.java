@@ -20,7 +20,7 @@ public class Mail {
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(htmlContent, true);  // 设置HTML内容
-            helper.setFrom("your-email@gmail.com");
+            helper.setFrom("no-reply@liangyongqi.top");
 
             javaMailSender.send(message);
         } catch (MessagingException e) {

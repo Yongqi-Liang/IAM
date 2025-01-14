@@ -45,6 +45,7 @@ public class ActiveUserApi {
             // 核心操作
             activeUser.activeUser(id, code);
             // 查询User表中此id条目的ramdomKey
+            LogTool.writelog("liangyongqi.iam.Controller.api.ActiveUser", "activeUser", "查询User表中此id条目的ramdomKey");
             String randomKey = userRepository.findById(id).get().getRandomkey();
             responseMap.put("code", "success");
             responseMap.put("message", "用户激活成功");
@@ -53,7 +54,7 @@ public class ActiveUserApi {
         } catch (Exception e) {
             e.printStackTrace();
             responseMap.put("code", "error");
-            responseMap.put("message", "用户激活失败");
+            responseMap.put("message", "服务器响应-用户激活失败:" + e.getMessage());
             return ResponseEntity.ok(responseMap);
         }
 

@@ -3,7 +3,9 @@ package liangyongqi.iam.Ability;
 import liangyongqi.iam.Data.Entity.WaitActiveUser;
 import liangyongqi.iam.Data.Repository.UserRepository;
 import liangyongqi.iam.Data.Repository.WaitActiveUserRepository;
+import liangyongqi.iam.Util.LogTool;
 import liangyongqi.iam.Util.RandomNumberGenerator;
+import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,10 +39,13 @@ public class ActiveUser {
             RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
             String newCode = randomNumberGenerator.generateFromBase(code);
             // 数据库操作1：将User表此id条目中的key改为新的认证算法key
+            LogTool.writelog("liangyongqi.iam.Ability.ActiveUser", "activeUser", "1");
             userRepository.updateRandomkeyById(newCode, id);
             // 数据库操作2：将User表此id条目中的status改为active
+            LogTool.writelog("liangyongqi.iam.Ability.ActiveUser", "activeUser", "2");
             userRepository.updateStatusById("active", id);
             // 数据库操作3：删除WaitActiveUser表中此id条目
+            LogTool.writelog("liangyongqi.iam.Ability.ActiveUser", "activeUser", "3");
             waitActiveUserRepository.delete(waitActiveUser);
             return true;
         } catch (Exception e) {
